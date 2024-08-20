@@ -1,19 +1,30 @@
 <template>
   <body>
     <div class="page3-view">
+      <!--Muestra un mensaje si la variable message tiene un valor-->
       <h1 v-if="message">{{ message }}</h1>
+
+      <!--Botón que cambia el mensaje y su propio estado al hacer clic-->
       <button @click="changeMessage" :class="{ clicked: isClicked }">{{ buttonText }}</button>
       <br><br><br>
+
+      <!--Una lista ordenada que itera sobre visibleAnimals y muestra cada animal con un color y además podemos borrar cada animal-->
       <ul>
         <li v-for="(animal, index) in visibleAnimals" :key="index" :style="{ color: colors[index] }">
           {{ index + 1 }}. {{ animal }}
           <button @click="deleteAnimal(index)">Borrar</button>
         </li>
       </ul>
+
+      <!--Párrafo que muestra si visibleAnimals está vacío-->
       <p v-if="visibleAnimals.length === 0">La lista está vacía.</p>
+
+      <!--Botones de mostrar/ocultar animales-->
       <button v-if="visibleAnimals.length < animals.length" @click="showNextAnimal">{{ nextButtonText }}</button>
       <button v-else @click="hideAnimals">Ocultar animales</button>
-      <br><br>
+      <br><br><br>
+
+      <!--Formulario para añadir animales-->
       <form @submit.prevent="addAnimal">
         <input v-model="newAnimal" placeholder="Añadir nuevo animal" />
         <button type="submit">Añadir</button>
@@ -77,11 +88,13 @@ function getRandomColor() {
   return color
 }
 
+/*Guarda la lista de animales y colores en el almacenamiento local*/
 function saveToLocalStorage() {
   localStorage.setItem('animals', JSON.stringify(animals.value))
   localStorage.setItem('colors', JSON.stringify(colors.value))
 }
 
+/*Carga la lista de animales y colores desde el almacenamiento local*/
 function loadFromLocalStorage() {
   const storedAnimals = localStorage.getItem('animals')
   const storedColors = localStorage.getItem('colors')
