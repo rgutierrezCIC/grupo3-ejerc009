@@ -6,9 +6,9 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/page1">Page1</RouterLink>
-        <RouterLink to="/page2">Page2</RouterLink>
-        <RouterLink to="/page3">Page3</RouterLink>
+        <RouterLink to="/page1">Ramiro</RouterLink>
+        <RouterLink to="/page2">Diego</RouterLink>
+        <RouterLink to="/page3">Ana</RouterLink>
       </nav>
     </div>
   </header>
