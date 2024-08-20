@@ -1,7 +1,7 @@
 describe('Color Change Tests', () => {
     beforeEach(() => {
       // Visita tu aplicación antes de cada prueba
-      cy.visit('/Page2View.vue')
+      cy.visit('/page2')
     })
   
     it('should change color when button is clicked', () => {
