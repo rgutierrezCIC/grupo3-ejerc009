@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <div class="wrapper">
+    <div class="wrapper" >
       <nav>
         <RouterLink to="/page1">Page1</RouterLink>
         <RouterLink to="/page2">Page2</RouterLink>
@@ -20,6 +20,7 @@ import { RouterLink, RouterView } from 'vue-router'
 header {
   line-height: 1.5;
   max-height: 100vh;
+  align-self: center;
 }
 
 
