@@ -1,23 +1,25 @@
 <template>
-  <div class="page3-view">
-    <h1 v-if="message">{{ message }}</h1>
-    <button @click="changeMessage" :class="{ clicked: isClicked }">{{ buttonText }}</button>
-    <br><br><br>
-    <ul>
-      <li v-for="(animal, index) in visibleAnimals" :key="index" :style="{ color: colors[index] }">
-        {{ index + 1 }}. {{ animal }}
-        <button @click="deleteAnimal(index)">Borrar</button>
-      </li>
-    </ul>
-    <p v-if="visibleAnimals.length === 0">La lista está vacía.</p>
-    <button v-if="visibleAnimals.length < animals.length" @click="showNextAnimal">{{ nextButtonText }}</button>
-    <button v-else @click="hideAnimals">Ocultar animales</button>
-    <br><br>
-    <form @submit.prevent="addAnimal">
-      <input v-model="newAnimal" placeholder="Añadir nuevo animal" />
-      <button type="submit">Añadir</button>
-    </form>
-  </div>
+  <body>
+    <div class="page3-view">
+      <h1 v-if="message">{{ message }}</h1>
+      <button @click="changeMessage" :class="{ clicked: isClicked }">{{ buttonText }}</button>
+      <br><br><br>
+      <ul>
+        <li v-for="(animal, index) in visibleAnimals" :key="index" :style="{ color: colors[index] }">
+          {{ index + 1 }}. {{ animal }}
+          <button @click="deleteAnimal(index)">Borrar</button>
+        </li>
+      </ul>
+      <p v-if="visibleAnimals.length === 0">La lista está vacía.</p>
+      <button v-if="visibleAnimals.length < animals.length" @click="showNextAnimal">{{ nextButtonText }}</button>
+      <button v-else @click="hideAnimals">Ocultar animales</button>
+      <br><br>
+      <form @submit.prevent="addAnimal">
+        <input v-model="newAnimal" placeholder="Añadir nuevo animal" />
+        <button type="submit">Añadir</button>
+      </form>
+    </div>
+  </body>
 </template>
 
 <script setup>
