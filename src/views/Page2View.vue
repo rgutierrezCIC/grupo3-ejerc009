@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch} from 'vue'
 
 const colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange']
 const colorIndex = ref(0)
@@ -8,9 +8,16 @@ const boxColor = ref(colors[colorIndex.value])
 const changeColor = () => {
   colorIndex.value = (colorIndex.value + 1) % colors.length // Cambia al siguiente color
   boxColor.value = colors[colorIndex.value]
+  selectedColor1.value = boxColor.value 
 }
 
 const selectedColor1 = ref('')
+
+
+watch(selectedColor1, (newColor) => {
+  boxColor.value = newColor
+})
+
 </script>
 
 
@@ -32,30 +39,33 @@ const selectedColor1 = ref('')
       <div class="question">
         <p>¿Cuál es tu color favorito?</p>
         <label style="color: blue">
-          <input type="radio" value="Azul" v-model="selectedColor1" />
+          <input type="radio" value="blue" v-model="selectedColor1" />
           Azul
         </label>
         <label style="color: green">
-          <input type="radio" value="Verde" v-model="selectedColor1" />
+          <input type="radio" value="green" v-model="selectedColor1" />
           Verde
         </label>
         <label style="color: yellow">
-          <input type="radio" value="Amarillo" v-model="selectedColor1" />
+          <input type="radio" value="yellow" v-model="selectedColor1" />
           Amarillo
         </label>
         <label style="color: red">
-          <input type="radio" value="Rojo" v-model="selectedColor1" />
+          <input type="radio" value="red" v-model="selectedColor1" />
           Rojo
         </label>
         <label style="color: blueviolet">
-          <input type="radio" value="Morado" v-model="selectedColor1" />
+          <input type="radio" value="purple" v-model="selectedColor1" />
           Morado
         </label>
         <label style="color: orange">
-          <input type="radio" value="Naranja" v-model="selectedColor1" />
+          <input type="radio" value="orange" v-model="selectedColor1" />
           Naranja
         </label>
+
       </div>
+
+      
     </div>
   </body>
 </template>
