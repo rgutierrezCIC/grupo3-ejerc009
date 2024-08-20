@@ -1,5 +1,4 @@
 <template>
-
   <body>
     <div class="page1-view">
       <h1>Formulario</h1>
@@ -17,19 +16,19 @@
 export default {
   data() {
     return {
-      age: '',
-      message: ''
+      age: '', 
+      message: '' 
     };
   },
   methods: {
     metodoSubmit() {
-      const edad = parseInt(this.edad, 10);
+      const edad = parseInt(this.age, 10); 
       if (edad < 18) {
         this.message = 'Eres menor de edad.';
       } else if (edad >= 18 && edad < 65) {
         this.message = 'Eres un adulto.';
       } else {
-        this.message = 'Eres mayor de edad.';
+        this.message = 'Eres una persona mayor.';
       }
     }
   }
@@ -62,3 +61,4 @@ p {
   font-weight: bold;
 }
 </style>
+
