@@ -1,7 +1,7 @@
 describe('Pruebas del componente App.vue', () => {
     beforeEach(() => {
       // Visita la página principal antes de cada prueba
-      cy.visit('/');
+      cy.visit('/views/Page2View.vue');
     });
   
     it('Debe mostrar los enlaces de navegación', () => {
