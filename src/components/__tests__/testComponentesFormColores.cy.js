@@ -1,3 +1,4 @@
+
 describe('FormularioColoresComponent', () => {
     beforeEach(() => {
       // Visita la URL donde se encuentra el componente en tu aplicación

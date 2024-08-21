@@ -1,4 +1,5 @@
 <template>
+    <!--Muestra los valores del formulario pasados como prop.-->
     <div class="mostrar-valores-animales">
       <h2>Valores del Formulario de Animales</h2>
       <p>Nombre: {{ valores.nombre }}</p>
@@ -7,6 +8,7 @@
   </template>
   
   <script setup>
+  //Usa defineProps para recibir props.
   import { defineProps } from 'vue'
   
   const props = defineProps({
