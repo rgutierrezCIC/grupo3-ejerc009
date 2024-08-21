@@ -1,11 +1,12 @@
+
 describe('FormularioColoresComponent', () => {
     beforeEach(() => {
       // Visita la URL donde se encuentra el componente en tu aplicación
-      cy.visit('/FormularioColoresComponent') // Asegúrate de que la URL sea la correcta
+      cy.visit('/Page2View') // Asegúrate de que la URL sea la correcta
     })
   
     it('renders form and handles submission', () => {
-      // Encuentra los campos del formulario
+        
       cy.get('#name').type('Juan')
       cy.get('#age').type('30')
   

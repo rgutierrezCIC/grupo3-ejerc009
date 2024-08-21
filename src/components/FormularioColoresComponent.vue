@@ -13,10 +13,10 @@
     </div>
   </template>
   
+  
   <script setup>
   import { ref, defineEmits } from 'vue'
   
-  // Define emits to handle event emissions
   const emit = defineEmits(['updateData'])
   
   const formData = ref({

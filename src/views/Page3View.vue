@@ -18,12 +18,20 @@
           {{ indice + 1 }}. {{ animal.nombre }}
         </li>
       </ul>
+
+      <!-- Nuevos componentes -->
+      <FormularioAnimales v-model="formularioAnimales" />
+      <MostrarValoresAnimales :valores="formularioAnimales" />
     </div>
   </body>
 </template>
 
 <script setup>
+//Usa ref y computed para gestionar el estado y lógica del componente.
 import { ref, computed } from 'vue'
+//Componentes hijos
+import FormularioAnimales from '@/components/FormularioAnimales.vue';
+import MostrarValoresAnimales from '@/components/MostrarValoresAnimales.vue';
 
 const mensaje = ref('Estamos en la página 3')
 const estaClicado = ref(false)
@@ -36,6 +44,11 @@ const animales = ref([
   { nombre: 'Burro', color: 'black', hoverColor: 'blue' },
   { nombre: 'Caballo', color: 'black', hoverColor: 'purple' }
 ])
+
+const formularioAnimales = ref({
+  nombre: '',
+  color: ''
+})
 
 function cambiarMensaje() {
   mensaje.value = mensaje.value ? '' : 'Estamos en la página 3'
