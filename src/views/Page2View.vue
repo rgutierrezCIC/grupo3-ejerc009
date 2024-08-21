@@ -1,5 +1,7 @@
 <script setup>
 import { ref, watch} from 'vue'
+import FormulaColoresComponent from '@/components/FormularioColoresComponent.vue'
+import DatosFormColores from '@/components/DatosFormColores.vue';
 
 const colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange']
 const colorIndex = ref(0)
@@ -18,6 +20,16 @@ watch(selectedColor1, (newColor) => {
   boxColor.value = newColor
 })
 
+const formData = ref({
+  name: '',
+  age: ''
+})
+
+const handleUpdateData = (data) => {
+  console.log('Datos recibidos en el componente padre:', data) // Verifica los datos recibidos
+  formData.value = data
+}
+
 </script>
 
 
@@ -35,6 +47,7 @@ watch(selectedColor1, (newColor) => {
         ></div>
         <button @click="changeColor">Cambiar Color</button>
       </div>
+
       <p>¿Cuál es tu color favorito?</p>
 
       <div class="question">
@@ -64,7 +77,8 @@ watch(selectedColor1, (newColor) => {
         </label>
 
       </div>
-
+      <FormulaColoresComponent @updateData="handleUpdateData" />
+      <DatosFormColores :data="formData" />
       
     </div>
   </body>
@@ -107,8 +121,7 @@ button {
   margin-bottom: 20px;
   margin-top: 20px;
   width: 100%;
-  align-items: center;
-  
+  align-self: center;
 }
 
 button {
