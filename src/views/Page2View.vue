@@ -35,9 +35,9 @@ watch(selectedColor1, (newColor) => {
         ></div>
         <button @click="changeColor">Cambiar Color</button>
       </div>
+      <p>¿Cuál es tu color favorito?</p>
 
       <div class="question">
-        <p>¿Cuál es tu color favorito?</p>
         <label style="color: blue">
           <input type="radio" value="blue" v-model="selectedColor1" />
           Azul
@@ -107,10 +107,8 @@ button {
   margin-bottom: 20px;
   margin-top: 20px;
   width: 100%;
-  flex-direction: column;
   align-items: center;
-    display: flex;
-
+  
 }
 
 button {
