@@ -17,6 +17,7 @@
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
+    "@cypress/vue": "^6.0.1",
     "@vitejs/plugin-vue": "^5.0.5",
     "cypress": "^13.13.3",
     "start-server-and-test": "^2.0.4",

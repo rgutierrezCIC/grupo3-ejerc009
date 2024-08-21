@@ -11,6 +11,7 @@ describe('Page3View Tests', () => {
     // Verifica que el mensaje inicial se muestra
     cy.get('h1').should('contain', 'Estamos en la página 3');
   });
+  
 
   it('Debe mostrar y ocultar el mensaje correctamente', () => {
     cy.get('h1').should('contain', 'Estamos en la página 3');
@@ -46,7 +47,7 @@ describe('Page3View Tests', () => {
     });
   });
 
-  
+
   it('Debe cambiar el color de los animales al pasar el cursor', () => {
     cy.get('button').contains('Ver lista de animales').click();
     
