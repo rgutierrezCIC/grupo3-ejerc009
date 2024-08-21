@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <div class="wrapper" >
+    <div class="top-bar" >
       <nav>
         <RouterLink to="/page1">Ramiro</RouterLink>
         <RouterLink to="/page2">Diego</RouterLink>
@@ -17,18 +17,38 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-  align-self: center;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
 }
 
+header {
+  width: 100%;
+  background-color: rgb(44, 44, 44);
+  color: var(--color-text);
+  
+}
+
+.top-bar {
+  background-color: rgb(44, 44, 44);
+  padding: 1rem 0;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  
+}
 
 nav {
   width: 100%;
   font-size: 40px;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 nav a.router-link-exact-active {

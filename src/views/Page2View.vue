@@ -26,9 +26,9 @@ watch(selectedColor1, (newColor) => {
   <body>
 
     <div class="app">
-      <h1 class="title">Formulario de colores</h1>
 
       <div class="wrapper">
+        <h1 class="title">Formulario de colores</h1>
         <div
           class="box"
           :style="{ backgroundColor: boxColor, width: '200px', height: '200px' }"
@@ -71,10 +71,17 @@ watch(selectedColor1, (newColor) => {
 </template>
 
 <style scoped>
+
+
+body{
+  background-color: #cacaca;
+
+}
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
 }
 .wrapper {
   display: flex;
@@ -82,6 +89,7 @@ watch(selectedColor1, (newColor) => {
   align-items: center;
   margin-top: 5px;
   width: 100%;
+  
 }
 
 button {
@@ -99,6 +107,10 @@ button {
   margin-bottom: 20px;
   margin-top: 20px;
   width: 100%;
+  flex-direction: column;
+  align-items: center;
+    display: flex;
+
 }
 
 button {
