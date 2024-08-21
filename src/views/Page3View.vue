@@ -42,7 +42,7 @@ function cambiarMensaje() {
   estaClicado.value = !estaClicado.value
 }
 
-const textoBoton = computed(() => estaClicado.value ? 'Ocultar' : 'Mostrar')
+const textoBoton = computed(() => estaClicado.value ? 'Mostrar' : 'Ocultar')
 
 function toggleLista() {
   mostrarLista.value = !mostrarLista.value
