@@ -1,4 +1,5 @@
 <template>
+
   <body>
     <div class="page1-view">
       <h1>Formulario</h1>
@@ -8,21 +9,34 @@
         <button type="submit">Intruducir</button>
       </form>
       <p v-if="message">{{ message }}</p>
+
+      <RgbSlider :red="red" :green="green" :blue="blue" @update:color="updateColor" />
+      <ColorDisplay :red="red" :green="green" :blue="blue" />
     </div>
   </body>
 </template>
 
 <script>
+import RgbSlider from '@/components/SelectoresRGB.vue';
+import ColorDisplay from '@/components/MuestraRBG.vue';
+
 export default {
+  components: {
+    RgbSlider,
+    ColorDisplay
+  },
   data() {
     return {
-      age: '', 
-      message: '' 
+      age: '',
+      message: '',
+      red: 0,
+      green: 0,
+      blue: 0
     };
   },
   methods: {
     metodoSubmit() {
-      const edad = parseInt(this.age, 10); 
+      const edad = parseInt(this.age, 10);
       if (edad < 18) {
         this.message = 'Eres menor de edad.';
       } else if (edad >= 18 && edad < 65) {
@@ -30,35 +44,63 @@ export default {
       } else {
         this.message = 'Eres una persona mayor.';
       }
+    },
+    updateColor({ red, green, blue }) {
+      this.red = red;
+      this.green = green;
+      this.blue = blue;
     }
+  
   }
 };
 </script>
 
-<style>
+
+<style scoped>
+
 .page1-view {
-  padding: 20px;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
 }
 
-form {
-  margin-top: 20px;
-}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  width: 100%;
 
-label {
-  margin-right: 10px;
-}
-
-input {
-  margin-right: 10px;
 }
 
 button {
   margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.container {
+  padding: 20px;
+}
+
+.question {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 100%;
+  align-items: center;
+
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 p {
-  margin-top: 20px;
-  font-weight: bold;
+  font-size: 18px;
 }
 </style>
-

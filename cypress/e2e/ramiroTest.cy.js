@@ -15,7 +15,7 @@ describe('Formulario de Page1View', () => {
     cy.get('p').should('contain', 'Eres un adulto.');
   });
 
-  it('Debería mostrar el mensaje "Eres mayor de edad." para edades de 65 o más', () => {
+  it('Debería mostrar el mensaje "Eres una persona mayor." para edades de 65 o más', () => {
     cy.get('input#age').type('67');
     cy.get('button[type="submit"]').click();
     cy.get('p').should('contain', 'Eres una persona mayor.');
