@@ -1,7 +1,12 @@
+/**
+ * Importaciones: Importa mount de Cypress para montar el componente 
+ * y el componente FormularioAnimales.
+*/
 import { mount } from '@cypress/vue';
 import FormularioAnimales from '@/components/FormularioAnimales.vue'; // Asegúrate de que la ruta es correcta
 
 describe('FormularioAnimales.vue', () => {
+  //Monta el componente antes de cada prueba con las props iniciales.
   beforeEach(() => {
     mount(FormularioAnimales, {
       props: {

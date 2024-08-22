@@ -1,4 +1,6 @@
 <template>
+  <!--Formulario que incluye campos para el nombre y color del animal 
+  y un botón para enviar.-->
   <div class="formulario-animales">
     <h2>Formulario de Animales</h2>
     <form @submit.prevent="enviarFormulario">
@@ -14,8 +16,19 @@
 </template>
 
 <script setup>
+/**
+ * Usa ref para crear una referencia al estado del formulario.
+ * Usa watch para observar y reaccionar a cambios en datos reactivas.
+ * Utiliza defineProps para recibir props y defineEmits para emitir eventos.
+ * Usa defineEmits para definir los eventos que el componente puede emitir.
+ */
 import { ref, watch, defineProps, defineEmits } from 'vue'
 
+/**
+ * defineProps:
+ * modelValue: Prop que recibe el componente. Se espera que sea un objeto con las 
+ * propiedades nombre y color. Este prop inicializa el estado del formulario.
+ */
 const props = defineProps({
   modelValue: {
     type: Object,
@@ -23,6 +36,7 @@ const props = defineProps({
   }
 })
 
+//Emite el evento update:modelValue cuando el formulario cambia o se envía.
 const emit = defineEmits(['update:modelValue'])
 
 const formulario = ref({ ...props.modelValue })

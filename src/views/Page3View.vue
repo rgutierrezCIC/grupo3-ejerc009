@@ -27,7 +27,9 @@
 </template>
 
 <script setup>
+//Usa ref y computed para gestionar el estado y lógica del componente.
 import { ref, computed } from 'vue'
+//Componentes hijos
 import FormularioAnimales from '@/components/FormularioAnimales.vue';
 import MostrarValoresAnimales from '@/components/MostrarValoresAnimales.vue';
 
