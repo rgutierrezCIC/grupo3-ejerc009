@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch} from 'vue'
+import { ref, watch } from 'vue'
 import FormulaColoresComponent from '@/components/FormularioColoresComponent.vue'
 import DatosFormColores from '@/components/DatosFormColores.vue';
 
@@ -15,7 +15,6 @@ const changeColor = () => {
 
 const selectedColor1 = ref('')
 
-
 watch(selectedColor1, (newColor) => {
   boxColor.value = newColor
 })
@@ -29,111 +28,134 @@ const handleUpdateData = (data) => {
   console.log('Datos recibidos en el componente padre:', data) // Verifica los datos recibidos
   formData.value = data
 }
-
 </script>
 
-
 <template>
+  <div class="app">
+    <h1 class="title">Formulario de Colores</h1>
 
-  <body>
+    <div class="box-wrapper">
+      <div class="box" :style="{ backgroundColor: boxColor }"></div>
+      <button @click="changeColor">Cambiar Color</button>
+    </div>
 
-    <div class="app">
+    <p class="question-title">¿Cuál es tu color favorito?</p>
+    <div class="question">
+      <label style="color: blue">
+        <input type="radio" value="blue" v-model="selectedColor1" />
+        Azul
+      </label>
+      <label style="color: green">
+        <input type="radio" value="green" v-model="selectedColor1" />
+        Verde
+      </label>
+      <label style="color: yellow">
+        <input type="radio" value="yellow" v-model="selectedColor1" />
+        Amarillo
+      </label>
+      <label style="color: red">
+        <input type="radio" value="red" v-model="selectedColor1" />
+        Rojo
+      </label>
+      <label style="color: blueviolet">
+        <input type="radio" value="purple" v-model="selectedColor1" />
+        Morado
+      </label>
+      <label style="color: orange">
+        <input type="radio" value="orange" v-model="selectedColor1" />
+        Naranja
+      </label>
+    </div>
 
-      <div class="wrapper">
-        <h1 class="title">Formulario de colores</h1>
-        <div
-          class="box"
-          :style="{ backgroundColor: boxColor, width: '200px', height: '200px' }"
-        ></div>
-        <button @click="changeColor">Cambiar Color</button>
-      </div>
-
-      <p>¿Cuál es tu color favorito?</p>
-
-      <div class="question">
-        <label style="color: blue">
-          <input type="radio" value="blue" v-model="selectedColor1" />
-          Azul
-        </label>
-        <label style="color: green">
-          <input type="radio" value="green" v-model="selectedColor1" />
-          Verde
-        </label>
-        <label style="color: yellow">
-          <input type="radio" value="yellow" v-model="selectedColor1" />
-          Amarillo
-        </label>
-        <label style="color: red">
-          <input type="radio" value="red" v-model="selectedColor1" />
-          Rojo
-        </label>
-        <label style="color: blueviolet">
-          <input type="radio" value="purple" v-model="selectedColor1" />
-          Morado
-        </label>
-        <label style="color: orange">
-          <input type="radio" value="orange" v-model="selectedColor1" />
-          Naranja
-        </label>
-
-      </div>
+    <div class="formulario">
       <FormulaColoresComponent @updateData="handleUpdateData" />
       <DatosFormColores :data="formData" />
-      
+
     </div>
-  </body>
+  
+  </div>
 </template>
 
 <style scoped>
 
 
-body{
-  background-color: #cacaca;
-
-}
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-content: center;
-}
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5px;
-  width: 100%;
-  
-}
-
-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.container {
   padding: 20px;
 }
 
-.question {
+.title {
+  font-size: 2em;
+  color: #333;
   margin-bottom: 20px;
-  margin-top: 20px;
-  width: 100%;
-  align-self: center;
+}
+
+.box-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
 }
 
 button {
-  margin-top: 10px;
-  padding: 10px 20px;
+  margin-top: 15px;
+  padding: 10px 25px;
   font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.question-title {
+  font-size: 1.5em;
+  color: #444;
+  margin: 20px 0;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.question label {
+  display: flex;
+  margin-right: 10px;
+
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.1em;
   cursor: pointer;
 }
 
-p {
-  font-size: 18px;
+.question input {
+  margin-right: 10px;
+  
 }
+
+
+
 </style>
-
-
