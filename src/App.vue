@@ -41,7 +41,7 @@ header {
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-  
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.3);
 }
 
 nav {

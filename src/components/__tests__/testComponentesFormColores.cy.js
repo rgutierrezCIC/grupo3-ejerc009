@@ -1,9 +1,17 @@
+import { mount } from '@cypress/vue';
+import FormularioColoresComponent from '@/components/FormularioColoresComponent.vue'
 
-describe('FormularioColoresComponent', () => {
-    beforeEach(() => {
-      // Visita la URL donde se encuentra el componente en tu aplicación
-      cy.visit('/Page2View') // Asegúrate de que la URL sea la correcta
-    })
+describe('FormularioAnimales.vue', () => {
+  beforeEach(() => {
+    mount(FormularioColoresComponent, {
+      props: {
+        modelValue: {
+          name: '',
+          age: ''
+        }
+      }
+    });
+  });
   
     it('renders form and handles submission', () => {
         
