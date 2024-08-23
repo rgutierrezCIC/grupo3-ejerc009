@@ -1,6 +1,7 @@
 <template>
   <body>
     <div class="page3-view">
+
       <!-- Muestra un mensaje si la variable mensaje tiene un valor -->
       <h1 v-if="mensaje">{{ mensaje }}</h1>
 
@@ -19,19 +20,47 @@
         </li>
       </ul>
 
-      <!-- Nuevos componentes -->
-      <FormularioAnimales v-model="formularioAnimales" />
-      <MostrarValoresAnimales :valores="formularioAnimales" />
+       <!-- Nuevo contenido: Listado de animales con opciones de editar y borrar -->
+    <div class="listado">
+      <h2>Listado de Animales</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Color</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="animal in animales" :key="animal.id">
+            <td>{{ animal.nombre }}</td>
+            <td>{{ animal.color }}</td>
+            <td>
+              <router-link :to="{ name: 'DetalleAnimal', params: { id: animal.id } }">Ver Detalle</router-link>
+              <button @click="editarAnimal(animal.id)">Editar</button>
+              <button @click="borrarAnimal(animal.id)">Borrar</button>
+              <input type="hidden" :value="animal.id" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+      <!-- Componente de detalle del animal -->
+      <AnimalDetalle v-if="animalSeleccionado" :animal="animalSeleccionado" @guardar="guardarCambios" @cancelar="cancelarEdicion" />
+  </div>
   </body>
 </template>
 
 <script setup>
 //Usa ref y computed para gestionar el estado y lógica del componente.
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 //Componentes hijos
 import FormularioAnimales from '@/components/FormularioAnimales.vue';
 import MostrarValoresAnimales from '@/components/MostrarValoresAnimales.vue';
+import AnimalDetalle from '@/components/AnimalDetalle.vue'
+
+const router = useRouter()
 
 const mensaje = ref('Estamos en la página 3')
 const estaClicado = ref(false)
@@ -39,10 +68,10 @@ const mostrarLista = ref(false)
 
 // Lista de animales con colores iniciales
 const animales = ref([
-  { nombre: 'Perro', color: 'black', hoverColor: 'red' },
-  { nombre: 'Gato', color: 'black', hoverColor: 'green' },
-  { nombre: 'Burro', color: 'black', hoverColor: 'blue' },
-  { nombre: 'Caballo', color: 'black', hoverColor: 'purple' }
+  { id: 1, nombre: 'Perro', color: 'Negro', hoverColor: 'red' },
+  { id: 2, nombre: 'Gato', color: 'Blanco', hoverColor: 'green' },
+  { id: 3, nombre: 'Burro', color: 'Gris', hoverColor: 'blue' },
+  { id: 4, nombre: 'Caballo', color: 'Marrón', hoverColor: 'purple' }
 ])
 
 const formularioAnimales = ref({
@@ -65,12 +94,43 @@ function toggleLista() {
 function cambiarColor(indice, hover) {
   animales.value[indice].color = hover ? animales.value[indice].hoverColor : 'black'
 }
+
+// Función para editar un animal
+function editarAnimal(id) {
+  router.push({ name: 'DetalleAnimal', params: { id } })
+}
+
+// Función para borrar un animal
+function borrarAnimal(id) {
+  animales.value = animales.value.filter(animal => animal.id !== id)
+}
+
+// Función para guardar cambios
+function guardarCambios(animalActualizado) {
+  const index = animales.value.findIndex(animal => animal.id === animalActualizado.id)
+  if (index !== -1) {
+    animales.value[index] = { ...animalActualizado }
+  }
+  animalSeleccionado.value = null
+}
+
+// Función para cancelar la edición
+function cancelarEdicion() {
+  animalSeleccionado.value = null
+}
 </script>
+
 
 <style scoped>
 .page3-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  margin-top: 50px;
+  padding: 20px; /* Añade padding para separación del borde */
+  background: linear-gradient(135deg, #beefec 0%, #fad0c4 100%);
+  color: #333;/* Color del texto para contraste */
 }
 
 button {
@@ -94,4 +154,83 @@ li {
   margin: 0.5rem 0;
   cursor: pointer;
 }
+
+form {
+  margin-bottom: 20px; /* Separación entre el formulario y otros elementos */
+}
+
+.formulario-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.column-wrapper {
+  display: flex;
+  justify-content: space-between; /* Ajusta el espacio entre las columnas */
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px; /* Ajusta el tamaño máximo del contenedor */
+}
+
+.formulario-animales,
+.mostrar-valores-animales {
+  background-color: #b3d4fc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+  flex: 1 1 300px; /* Permite que las columnas crezcan y se ajusten al espacio disponible, con un ancho mínimo de 300px */
+  box-sizing: border-box;
+}
+
+.mostrar-valores-animales {
+  background-color: #d0e7ff;
+}
+
+h1, h2 {
+  color: #2c3e50;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+input {
+  border: 1px solid #3498db;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  width: calc(100% - 20px);
+  box-sizing: border-box;
+}
+
+label {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-top: 10px;
+}
+
+.listado, .detalle {
+  flex: 1;
+}
+
 </style>
+
