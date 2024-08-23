@@ -61,6 +61,8 @@ function enviarFormulario() {
 form {
   display: flex;
   flex-direction: column;
+  max-width: 800px;
+  align-content:center;
 }
 
 label {
