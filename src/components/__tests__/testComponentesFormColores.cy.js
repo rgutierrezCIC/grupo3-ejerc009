@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { mount } from '@cypress/vue';
 import FormularioColoresComponent from '@/components/FormularioColoresComponent.vue'
 
@@ -13,14 +12,6 @@ describe('FormularioAnimales.vue', () => {
       }
     });
   });
-=======
-
-describe('FormularioColoresComponent', () => {
-    beforeEach(() => {
-      // Visita la URL donde se encuentra el componente en tu aplicación
-      cy.visit('/Page2View') // Asegúrate de que la URL sea la correcta
-    })
->>>>>>> fc03899bd3662f5a01039f9f23f9cd87e7a81f15
   
     it('renders form and handles submission', () => {
         

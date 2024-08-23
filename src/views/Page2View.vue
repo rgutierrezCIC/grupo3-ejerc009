@@ -1,14 +1,16 @@
 <script setup>
 import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import FormulaColoresComponent from '@/components/FormularioColoresComponent.vue'
-import DatosFormColores from '@/components/DatosFormColores.vue';
+import DatosFormColores from '@/components/DatosFormColores.vue'
 
+// Lista de colores para el fondo de la caja
 const colors = ['blue', 'green', 'yellow', 'red', 'purple', 'orange']
 const colorIndex = ref(0)
 const boxColor = ref(colors[colorIndex.value])
 
 const changeColor = () => {
-  colorIndex.value = (colorIndex.value + 1) % colors.length // Cambia al siguiente color
+  colorIndex.value = (colorIndex.value + 1) % colors.length
   boxColor.value = colors[colorIndex.value]
   selectedColor1.value = boxColor.value 
 }
@@ -19,15 +21,31 @@ watch(selectedColor1, (newColor) => {
   boxColor.value = newColor
 })
 
+// Datos del formulario de colores
 const formData = ref({
   name: '',
   age: ''
 })
 
 const handleUpdateData = (data) => {
-  console.log('Datos recibidos en el componente padre:', data) // Verifica los datos recibidos
+  console.log('Datos recibidos en el componente padre:', data)
   formData.value = data
 }
+
+// Lista de personas
+const persons = ref([
+  { id: 1, name: 'Juan', age: 25, colorFav: 'blue' },
+  { id: 2, name: 'Ana', age: 30, colorFav: 'green' },
+  { id: 3, name: 'Carlos', age: 35, colorFav: 'red' }
+])
+
+// Configurar la navegación
+const router = useRouter()
+
+const goToEditPerson = (personId) => {
+  router.push({ name: 'EditPersonaColores', params: { id: personId } })
+}
+
 </script>
 
 <template>
@@ -41,44 +59,33 @@ const handleUpdateData = (data) => {
 
     <p class="question-title">¿Cuál es tu color favorito?</p>
     <div class="question">
-      <label style="color: blue">
-        <input type="radio" value="blue" v-model="selectedColor1" />
-        Azul
-      </label>
-      <label style="color: green">
-        <input type="radio" value="green" v-model="selectedColor1" />
-        Verde
-      </label>
-      <label style="color: yellow">
-        <input type="radio" value="yellow" v-model="selectedColor1" />
-        Amarillo
-      </label>
-      <label style="color: red">
-        <input type="radio" value="red" v-model="selectedColor1" />
-        Rojo
-      </label>
-      <label style="color: blueviolet">
-        <input type="radio" value="purple" v-model="selectedColor1" />
-        Morado
-      </label>
-      <label style="color: orange">
-        <input type="radio" value="orange" v-model="selectedColor1" />
-        Naranja
+      <!-- Opciones de colores favoritos -->
+      <label v-for="color in colors" :key="color" :style="{ color }">
+        <input type="radio" :value="color" v-model="selectedColor1" />
+        {{ color.charAt(0).toUpperCase() + color.slice(1) }}
       </label>
     </div>
 
     <div class="formulario">
+      <div class="person-list">
+      <h2>Lista de Personas</h2>
+      <ul>
+        <li v-for="person in persons" :key="person.id">
+          <span>{{ person.name }} </span>
+          <button @click="goToEditPerson(person.id)">Editar</button>
+        </li>
+      </ul>
+    </div>
+
       <FormulaColoresComponent @updateData="handleUpdateData" />
       <DatosFormColores :data="formData" />
-
     </div>
-  
   </div>
+    
 </template>
 
 <style scoped>
-
-
+/* Estilos de la aplicación */
 .app {
   display: flex;
   flex-direction: column;
@@ -144,7 +151,6 @@ button:hover {
 .question label {
   display: flex;
   margin-right: 10px;
-
   align-items: center;
   margin-bottom: 10px;
   font-size: 1.1em;
@@ -153,9 +159,21 @@ button:hover {
 
 .question input {
   margin-right: 10px;
-  
 }
 
+.person-list {
+  margin-top: 20px;
+}
 
+.person-list ul {
+  list-style: none;
+  padding: 0;
+}
 
+.person-list li {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 </style>
