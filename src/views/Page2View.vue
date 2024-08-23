@@ -46,6 +46,10 @@ const goToEditPerson = (personId) => {
   router.push({ name: 'EditPersonaColores', params: { id: personId } })
 }
 
+const goToRickAndMorty = () => {
+  router.push({ name: 'RickAndMorty' })
+}
+
 </script>
 
 <template>
@@ -65,6 +69,7 @@ const goToEditPerson = (personId) => {
         {{ color.charAt(0).toUpperCase() + color.slice(1) }}
       </label>
     </div>
+    <button style="background-color: blueviolet;" @click="goToRickAndMorty">Ver Personajes de Rick and Morty</button>
 
     <div class="formulario">
       <div class="person-list">
@@ -80,6 +85,7 @@ const goToEditPerson = (personId) => {
       <FormulaColoresComponent @updateData="handleUpdateData" />
       <DatosFormColores :data="formData" />
     </div>
+
   </div>
     
 </template>

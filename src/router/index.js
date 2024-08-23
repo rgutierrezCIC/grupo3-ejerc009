@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Page1View from '../views/Page1View.vue'
 import Page3View from '@/views/Page3View.vue'
 import EditarPersonaColores from '@/views/EditarPersonaColores.vue'
+import RickAndMorty from '@/views/RickAndMorty.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +31,11 @@ const router = createRouter({
       component:EditarPersonaColores,
       props: true
 
+    },
+    {
+      path: '/rick-and-morty',
+      name: 'RickAndMorty',
+      component: RickAndMorty
     }
     
   ]
