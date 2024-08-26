@@ -20,33 +20,16 @@
         </li>
       </ul>
 
-       <!-- Nuevo contenido: Listado de animales con opciones de editar y borrar -->
-    <div class="listado">
-      <h2>Listado de Animales</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Color</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="animal in animales" :key="animal.id">
-            <td>{{ animal.nombre }}</td>
-            <td>{{ animal.color }}</td>
-            <td>
-              <router-link :to="{ name: 'DetalleAnimal', params: { id: animal.id } }">Ver Detalle</router-link>
-              <button @click="editarAnimal(animal.id)">Editar</button>
-              <button @click="borrarAnimal(animal.id)">Borrar</button>
-              <input type="hidden" :value="animal.id" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-      <!-- Componente de detalle del animal -->
-      <AnimalDetalle v-if="animalSeleccionado" :animal="animalSeleccionado" @guardar="guardarCambios" @cancelar="cancelarEdicion" />
+      <br><br><br>
+  
+      <!-- Sección del formulario de animales y los valores mostrados -->
+      <div class="formulario-section">
+        <FormularioAnimales v-model="formularioDatos" />
+        <MostrarValoresAnimales :valores="formularioDatos" />
+      </div>
+      
+      <!-- Componente AnimalDetalle (comentado si no se usa en este contexto) -->
+      <!-- <AnimalDetalle v-if="animalSeleccionado" :animal="animalSeleccionado" @guardar="guardarCambios" @cancelar="cancelarEdicion" /> -->
   </div>
   </body>
 </template>
@@ -58,13 +41,18 @@ import { useRouter } from 'vue-router'
 //Componentes hijos
 import FormularioAnimales from '@/components/FormularioAnimales.vue';
 import MostrarValoresAnimales from '@/components/MostrarValoresAnimales.vue';
+
 import AnimalDetalle from '@/components/AnimalDetalle.vue'
+import LlamadaServidor from '@/components/LlamadaServidor.vue'
 
 const router = useRouter()
 
 const mensaje = ref('Estamos en la página 3')
 const estaClicado = ref(false)
 const mostrarLista = ref(false)
+const formularioDatos = ref({ nombre: '', color: '' }); // Define formularioDatos
+const animalSeleccionado = ref(null);
+
 
 // Lista de animales con colores iniciales
 const animales = ref([
@@ -74,6 +62,7 @@ const animales = ref([
   { id: 4, nombre: 'Caballo', color: 'Marrón', hoverColor: 'purple' }
 ])
 
+// Datos del formulario
 const formularioAnimales = ref({
   nombre: '',
   color: ''

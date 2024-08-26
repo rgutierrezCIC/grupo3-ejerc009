@@ -1,10 +1,13 @@
-import Page2View from '@/views/Page2View.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import Page2View from '@/views/Page2View.vue'
 import Page1View from '../views/Page1View.vue'
 import Page3View from '@/views/Page3View.vue'
-import AnimalDetalle from '@/components/AnimalDetalle.vue'
 
+import AnimalDetalle from '@/components/AnimalDetalle.vue'
 import EditarPersonaColores from '@/views/EditarPersonaColores.vue'
+import ListarAnimales from '@/views/Animales/ListarAnimales.vue'
+import EditarAnimal from '@/views/Animales/EditarAnimal.vue'
+import CrearAnimales from '@/views/Animales/CrearAnimales.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,10 +36,26 @@ const router = createRouter({
       component: Page3View,
     },
     {
-        path: '/animal/:id',
-        name: 'DetalleAnimal',
-        component: AnimalDetalle
+      path: '/animal/:id',
+      name: 'DetalleAnimal',
+      component: AnimalDetalle
     },
+    { 
+      path: '/listar-animales', 
+      name: 'ListarAnimales', 
+      component: ListarAnimales 
+    },
+    { 
+      path: '/crear-animal', 
+      name: 'CrearAnimal', 
+      component: CrearAnimales
+    },
+    { 
+      path: '/animal/:id', 
+      name: 'EditarAnimal', 
+      component: EditarAnimal, 
+      props: true 
+    }
     
   
   ]

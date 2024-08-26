@@ -9,14 +9,12 @@
   
   <script setup>
   //Usa defineProps para recibir props.
-  import { defineProps } from 'vue'
-  
   const props = defineProps({
-    valores: {
-      type: Object,
-      required: true
-    }
-  })
+  valores: {
+    type: Object,
+    required: true
+  }
+})
   </script>
   
   <style scoped>

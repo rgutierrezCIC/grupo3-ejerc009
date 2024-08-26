@@ -22,7 +22,7 @@
  * Utiliza defineProps para recibir props y defineEmits para emitir eventos.
  * Usa defineEmits para definir los eventos que el componente puede emitir.
  */
-import { ref, watch, defineProps, defineEmits } from 'vue'
+import { ref, watch } from 'vue'
 
 /**
  * defineProps:
