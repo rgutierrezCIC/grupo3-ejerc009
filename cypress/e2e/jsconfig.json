@@ -4,5 +4,5 @@
     "lib": ["es5", "dom"],
     "types": ["cypress"]
   },
-  "include": ["./**/*", "../support/**/*", "../../src/components/__tests__/FormularioAnimalesTest.cy.js"]
+  "include": ["./**/*", "../support/**/*", "../../src/components/__tests__/testComponentesFormColores.cy.js"]
 }

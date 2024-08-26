@@ -19,6 +19,11 @@
     "axios": "^1.7.4",
     "glob": "^11.0.0",
     "rimraf": "^6.0.1",
+    "start": "nodemon server.js"
+    
+  },
+  "dependencies": {
+    "express": "^4.19.2",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
@@ -29,7 +34,8 @@
     "@types/uglify-js": "^3.17.5",
     "@vitejs/plugin-vue": "^5.0.5",
     "cypress": "^13.13.3",
-    "start-server-and-test": "^2.0.4",
+    "nodemon": "^3.1.4",
+    "start-server-and-test": "^ccx2.0.4",
     "vite": "^5.3.1",
     "vite-plugin-vue-devtools": "^7.3.1",
     "@vue/cli-service": "^4.5.0"

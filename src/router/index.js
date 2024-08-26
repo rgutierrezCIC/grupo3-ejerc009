@@ -8,6 +8,8 @@ import EditarPersonaColores from '@/views/EditarPersonaColores.vue'
 import ListarAnimales from '@/views/Animales/ListarAnimales.vue'
 import EditarAnimal from '@/views/Animales/EditarAnimal.vue'
 import CrearAnimales from '@/views/Animales/CrearAnimales.vue'
+import RickAndMorty from '@/views/RickAndMorty.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +32,12 @@ const router = createRouter({
       props: true
     },
 
+    
+    {
+      path: '/rick-and-morty',
+      name: 'RickAndMorty',
+      component: RickAndMorty
+    },
     {
       path: '/page3',
       name: 'page3',
