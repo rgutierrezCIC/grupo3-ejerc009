@@ -13,13 +13,16 @@
     <div class="color-container">
       <RgbSlider :red="red" :green="green" :blue="blue" @update:color="updateColor" />
       <ColorDisplay :red="red" :green="green" :blue="blue" @guardar-color="agregarColor" />
-      
+    </div>
+
+    <div class="list-container" v-if="colores.length > 0">
       <!-- Usamos ListaColoresRGB para mostrar y manejar los colores -->
       <ListaColoresRGB 
         :colores="colores" 
         @eliminar-color="eliminarColor" 
       />
     </div>
+
   </div>
 </template>
 
@@ -138,6 +141,20 @@ p {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #393939;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;

@@ -28,7 +28,7 @@
   
   <style scoped>
   .color-list {
-    margin-top: 30px;
+
     list-style-type: none; /* Elimina los puntos de la lista */
     padding: 0; /* Elimina el padding predeterminado de la lista */
     width: 100%; /* Ocupa el ancho completo del contenedor */
