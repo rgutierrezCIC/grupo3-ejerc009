@@ -1,8 +1,11 @@
 <template>
+  <div>
     <div class="color-display" :style="{ backgroundColor: rgbColor }">
       <p>{{ rgbColor }}</p>
     </div>
-  </template>
+    <button @click="guardarColor">Guardar Color</button>
+  </div>
+</template>
   
   <script>
   export default {
@@ -15,7 +18,12 @@
       rgbColor() {
         return `rgb(${this.red}, ${this.green}, ${this.blue})`;
       }
+    },
+    methods: {
+    guardarColor() {
+      this.$emit('guardar-color', this.rgbColor);
     }
+  }
   };
   </script>
   
@@ -30,6 +38,18 @@
     border-radius: 5px;
     color: #fff;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 30px;
   }
+  button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  width: 100%;
+  max-width: 300px;
+  background-color: #007bff;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
   </style>

@@ -28,13 +28,6 @@ html, body {
   
 }
 
-header {
-  width: 100%;
-  background-color: rgb(44, 44, 44);
-  color: var(--color-text);
-  
-}
-
 .top-bar {
   background-color: rgb(44, 44, 44);
   padding: 1rem 0;
